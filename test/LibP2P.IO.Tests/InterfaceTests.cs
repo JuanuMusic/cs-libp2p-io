@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using Moq;
-using Xunit;
+using NUnit.Framework;
 
 namespace LibP2P.IO.Tests
 {
@@ -15,7 +15,7 @@ namespace LibP2P.IO.Tests
             }
         }
 
-        [Fact]
+        [Test]
         public void Closer_Test()
         {
             var closed = false;
@@ -26,7 +26,7 @@ namespace LibP2P.IO.Tests
             Assert.True(closed);
         }
 
-        [Fact]
+        [Test]
         public void Reader_Test()
         {
             var data = new byte[4096];
@@ -49,12 +49,12 @@ namespace LibP2P.IO.Tests
                 total += reader.Object.Read(buf, total, 512);
             }
 
-            Assert.Equal(total, data.Length);
-            Assert.Equal(dataOffset, data.Length);
-            Assert.Equal(buf, data);
+            Assert.AreEqual(total, data.Length);
+            Assert.AreEqual(dataOffset, data.Length);
+            Assert.AreEqual(buf, data);
         }
 
-        [Fact]
+        [Test]
         public void Writer_Test()
         {
             var data = new byte[4096];
@@ -77,9 +77,9 @@ namespace LibP2P.IO.Tests
                 total += writer.Object.Write(buf, total, 512);
             }
 
-            Assert.Equal(total, data.Length);
-            Assert.Equal(dataOffset, data.Length);
-            Assert.Equal(buf, data);
+            Assert.AreEqual(total, data.Length);
+            Assert.AreEqual(dataOffset, data.Length);
+            Assert.AreEqual(buf, data);
         }
     }
 }
